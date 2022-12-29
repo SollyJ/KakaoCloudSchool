@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form(이벤트추가)</title>
+    </head>
+    <body>
+        <form id="register_form" method="post">
+            <fieldset>
+                <legend>개인 정보</legend>
+
+                <label>이름: </label>
+                <input id="name" type="text"/>
+
+                </br>
+
+                <label>비밀번호: </label>
+                <input id="password" type="password"/>
+
+                </br>
+
+                <label>비밀번호 확인: </label>
+                <input id="password_re" type="password"/>
+
+                </br>
+
+                <!-- name: 서버에게 전송되는 이름  value: 서버에게 전송되는 값  id: 해당 컨트롤의 고유id 클라이언트에서 사용하는 -->
+                <!-- class: 동일한 스타일속성을 적용하기 위해 -->
+                <input type="radio" name="gender" value="man" id="gender_man" checked/>
+                <label for="gender_man">남자</label>
+                <input type="radio" name="gender" value="woman" id="gender_woman"/>
+                <label for="gender_woman">여자</label>
+
+                </br>
+
+                <select>
+                    <option value="developer">개발자 과정</option>
+                    <option value="engineer">엔지니어 과정</option>
+                </select>
+
+                </br>
+
+                <label>사진 추가 </label>
+                <input type="file" name="profile_img" />
+            </fieldset>
+
+            </br>
+
+            <fieldset>
+                <legend>자기 소개</legend>
+                <textarea id="self_introduce" rows="10" cols="100"></textarea>
+            </fieldset>
+
+            </br>
+
+            <input type="submit" value="완료" />
+            <input type="reset" value="초기화" />
+        </form>
+    </body>
+
+    <script>
+        let register_form = document.getElementById("register_form");
+
+        register_form.addEventListener("submit", (e) => {
+            let name = document.getElementById("name");
+            let password = document.getElementById("password");
+            let password_re = document.getElementById("password_re");
+            let self_introduce = document.getElementById("self_introduce");
+
+            // input들 비어있는지 확인
+            if(name.value.trim().length == 0) {  // 공백제거도 한다
+                alert("이름을 입력하세요.");
+                e.preventDefault();   // 디폴트 이벤트를 제거해서 서버에 전송되지 않도록 한다
+                return; // break와 비슷한건데 뒤에 구문은 할 필요가 없으므로 return을 해주는 것이 좋다.
+            }
+
+            else if(password.value.trim().length == 0) {   
+                alert("비밀번호를 입력하세요.");
+                e.preventDefault();
+                return;
+            } 
+
+            else if(!checkPass(password.value)) {  
+                alert("비밀번호는 7~14자, 대문자 포함, 영문과 숫자를 조합해주세요.");
+                e.preventDefault();
+                return;
+            }
+
+            // 비밀번호 확인란을 만들어서 비밀번호와 확인란이 맞지 않으면 전송이 안되도록
+            else if(password_re.value != password.value) {    
+                alert("비밀번호가 틀립니다.")
+                e.preventDefault();
+                return;
+            }
+
+            else if(self_introduce.value.trim().length == 0) {
+                self_introduce.innerHTML = "!!자기소개 입력 필수!!";
+                e.preventDefault();
+                return;
+            }
+            
+            else {
+                alert("폼에서 전송");
+            }  
+
+        });
+
+        function checkPass(str) {   // 비밀번호 패턴 체크 함수
+            var check1 = /^[A-Za-z0-9]{7,14}$/;
+            var check2 = /[a-z]/g;
+            var check3 = /[0-9]/g;
+            //var check4 = /[~!@\#$%<>^&*]/;  // 해당 특수문자 포함
+            var check5 = /[A-Z]/g;  // 대문자 포함
+
+            return(check1.test(str) && check2.test(str) && check3.test(str) && check5.test(str));
+        }
+    </script>
+</html>

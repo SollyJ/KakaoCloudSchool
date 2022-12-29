@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
+@media screen and (max-width: 800px) {
+    body {
+        background-color: black;
+    }
+}
+
+.examplelist {
+    list-style-type: decimal;
+}
+
+.each_list {
+    color: red;
+    font-size: 30px;
+    font-family: 'Poor Story', cursive;
+    text-shadow: -0.5em -0.5em 0.5em white, 0.3em 0.3em 0.5em rgb(255, 136, 136);
+}
+
+#company {
+    background-color: lime;
+}
+
+#model_id {
+    background-color: deepskyblue;
+}
+
+p:hover {
+    background-color: rgb(184, 184, 255);
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>예제</title>
+        <link rel="stylesheet" href="default.css">
+    </head>
+
+    <body>
+        <ol class="examplelist">
+            <li class="each_list">
+                <h2>이미지 삽입</h2>
+            </li>
+            <a href="https://www.starbucks.co.kr/">
+                <img src="https://github.com/itggangpae/xhtml/blob/main/images/cappuccino.jpg?raw=true" width="500" height="300"/>
+            </a>
+            <p style="margin-bottom: 30px;">클릭하면 스타벅스 홈페이지 이동👆</p>
+
+            <hr/>
+
+            <li class="each_list">
+                <h2>표 만들기</h2>
+            </li>
+            <div style="width:200px; height: 100px; overflow: auto">
+                <table style="margin-bottom: 30px;">
+                    <caption>핸드폰 종류</caption>
+                    <!--열 단위로 스타일 적용-->
+                    <col id="company">
+                    <col id="model_id">
+                    <thead>
+                        <tr>
+                            <th scope="col">회사</th>
+                            <th scope="col">모델명</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apple</td>
+                            <td>iPhone7</td>
+                        </tr>
+                        <tr>
+                            <td>Samsung</td>
+                            <td>Galaxy Z flip3</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>iPhone12</td>
+                        </tr>
+                        <tr>
+                            <td>Samsung</td>
+                            <td>Galaxy A</td>
+                        </tr>
+                        <tr>
+                            <td>LG</td>
+                            <td>Optimus G2</td>
+                        </tr>
+                        <tr>
+                            <td>Samsung</td>
+                            <td>Galaxy Z flip4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr/>
+
+            <li class="each_list">
+                <h2>비디오</h2>
+            </li>
+            <embed style="margin-bottom: 30px;"
+                   src="https://vt.tumblr.com/tumblr_o600t8hzf51qcbnq0_480.mp4" width="500" height="300" />
+            <!-- object로도 가능 -->
+            <!-- <object data="https://vt.tumblr.com/tumblr_o600t8hzf51qcbnq0_480.mp4" /> -->
+
+            <hr/>
+
+            <li class="each_list">
+                <h2>div span p 사용</h2>
+            </li>
+            <div>div는 블록 요소이다.
+                <span>블록 안에는 span과 같은 인라인 요소를 넣을 수 있다.</span>
+            </div>
+            <span>span은 </span>
+            <span>인라인 요소</span>
+            <p>paragraph는</p>
+            <p>블록 요소</p>
+        </ol>
+        
+    </body>
+</html>

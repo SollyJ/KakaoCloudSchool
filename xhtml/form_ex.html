@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>폼 예제</title>
+    </head>
+
+    <body>
+        <form method="post">
+            <fieldset>
+                <legend>개인 정보</legend>
+
+                <label>이름: </label>
+                <input type="text"/>
+
+                </br>
+
+                <label>주민등록번호: </label>
+                <input type="password"/>
+
+                </br>
+
+                <!-- name: 서버에게 전송되는 이름  value: 서버에게 전송되는 값  id: 해당 컨트롤의 고유id 클라이언트에서 사용하는 -->
+                <!-- class: 동일한 스타일속성을 적용하기 위해 -->
+                <input type="radio" name="gender" value="man" id="gender_man" checked/>
+                <label for="gender_man">남자</label>
+                <input type="radio" name="gender" value="woman" id="gender_woman"/>
+                <label for="gender_woman">여자</label>
+
+                </br>
+
+                <select>
+                    <option value="developer">개발자 과정</option>
+                    <option value="engineer">엔지니어 과정</option>
+                </select>
+
+                </br>
+
+                <label>사진 추가 </label>
+                <input type="file" name="profile_img" />
+            </fieldset>
+
+            </br>
+
+            <fieldset>
+                <legend>자기 소개</legend>
+                <textarea rows="10" cols="100"></textarea>
+            </fieldset>
+
+            </br>
+
+            <input type="submit" value="완료" />
+            <input type="reset" value="초기화" />
+        </form>
+    </body>
+</html>
