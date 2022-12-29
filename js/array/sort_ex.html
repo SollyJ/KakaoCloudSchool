@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sort</title>
+        <script>
+            var ar = [20, 40, 230, 110];
+            ar.sort((a, b) => {return a - b})
+            console.log("오름차순 정렬 " + ar);
+
+            ar.sort((a, b) => {return b - a})
+            console.log("내림차순 정렬 " + ar);
+
+            // 생성자
+            function Book(title, price, date) {
+                this.title = title;
+                this.price = price;
+                this.date = date;
+
+                this.toString = function(){
+                    return this.title + "의 가격은 " + this.price + "원"
+                }
+            } 
+
+            var books = new Array(5);
+            books[0] = new Book("Python", 18000, new Date(1998, 11, 14));
+            books[1] = new Book("Java", 20000, new Date(2000, 1, 14));
+            books[2] = new Book("JavaScript", 15000, new Date(2012, 11, 4));
+            books[3] = new Book("C++", 23000, new Date(2022, 5, 5));
+            books[4] = new Book("React", 25000, new Date(2018, 8, 8));
+            
+            // 가격 오름차순 정렬
+            console.log(books.sort((a, b) => {
+                return a.price - b.price
+            }));
+
+            // 가격 내림차순 정렬
+            console.log(books.sort((a, b) => {
+                return b.price - a.price
+            }));
+            
+            // 제목 오름차순 정렬
+            console.log(books.sort((a, b) => {
+                if(a.title > b.title)   return 1
+                else    return -1
+            }));
+            
+            // 제목 내림차순 정렬
+            console.log(books.sort((a, b) => {
+                if(a.title < b.title)   return 1
+                else    return -1
+            }));
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>String Ex</title>
+        <script>
+            /*GCCG를 찾아 첫글자의 위치를 전부 출력 
+            // 앞에서 사용한 데이터는 다시 사용하면 안됨
+            let str = "CGCCGEKMKKGCCGCCGGOPNGCCGJ";
+            //let = str = "GCCGCCGCCG";
+            var index = [];
+            var len = str.length;
+    
+            for(var i=0; i<len; i++) {
+                var temp = "";
+                if(str[i] == 'G') {
+                    temp = str.slice(i, i + 4);
+    
+                    if(temp == "GCCG") {
+                        if(index.length == 0) {
+                            index.push(i);
+                        } else if(str.slice(i-3, i+1) == temp) {   // 예외처리
+                            continue;
+                        } else {
+                            index.push(i);
+                        }
+                    } else {
+                        continue;
+                    }
+                }
+            }
+            console.log(index); */
+    
+            /* charAt, length만 이용 */
+            //let str = "CGCCGEKMKKGCCGCCGGOPNGCCGJ";
+            let str = "GCCGCCGCCG";
+            var len = str.length;
+            var index = [];
+    
+            for(var i=0; i<len; i++) {
+                var temp = "";
+                if(str[i] == 'G') {
+                    temp += str.charAt(i) + str.charAt(i+1) + str.charAt(i+2) + str.charAt(i+3);
+    
+                    if(temp == "GCCG") {
+                        if(index.length == 0) {
+                            index.push(i);
+                        } else if(str.charAt(i-3)+str.charAt(i-2)+str.charAt(i-1)+str.charAt(i) == temp) {   // 예외처리
+                            continue;
+                        } else {
+                            index.push(i);
+                        }
+                    } else {
+                        continue;
+                    }
+                }
+            }
+            console.log(index); 
+            
+            /* 13자리 문자열을 만들고 뒤의 6자리는 *로 보여주기 
+            var str = "0123456789abc";
+            var len = str.length;
+    
+            for(var i=len-6; i<len; i++) {
+                //console.log(i);
+                str = str.replace(str[i], '*');
+                //console.log(str);
+            }
+            console.log(str); */
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

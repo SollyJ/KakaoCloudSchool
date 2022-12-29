@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script>
+            var ar = [10, 20, 30, 40, 50, 60];
+
+            /* for each 
+            // 배열을 순회하면서 함수를 호출
+            // 내부 반복자를 사용하기 때문에 실행속도가 빠름
+            ar.forEach((e) => {
+                console.log(e);
+            }) */
+
+            /*map
+            var result_ar = ar.map((e) => {
+                return e * 10
+            })
+            console.log(result_ar); */
+
+            /*filter
+            var result_ar = ar.filter((e) => {
+                return e > 30
+            })
+            console.log(result_ar);
+
+            // 특정 문자 포함 문자열만 필터링하기
+            var search_ar = ["korea", "area", "earth", "japan", "africa"];
+            var result_ar = search_ar.filter((e) => {
+                return e.indexOf("ea") >= 0
+            })
+            console.log(result_ar); */
+
+            /* every some */
+            console.log(ar.every((e) => {
+                return e > 0
+            }));
+            
+            console.log(ar.some((e) => {
+                return e > 50
+            }))
+
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

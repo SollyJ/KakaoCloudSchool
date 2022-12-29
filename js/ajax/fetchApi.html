@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>fetch API</title>
+
+        <script>
+            fetch('./resources/data2.json') // data2가
+                .then((response) => response.json())    // response로 들어오고 response.json()이
+                .then((data) => console.log(data)); // data로 들어와 콘솔에 출력한다.
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

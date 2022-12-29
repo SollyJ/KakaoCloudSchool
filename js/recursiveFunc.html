@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recursive Function Examples</title>
+    </head>
+    <script>
+        /* 피보나치 수열 n번째 항 구하기
+        let last_num = 10;
+        const fibo = function(n) {   
+            if(n == 1 || n == 2)    return 1
+            return fibo(n-1) + fibo(n-2)
+        }
+        console.log(fibo(last_num)); */
+
+
+        /* 하노이의 탑 이동과정 출력하기*/
+        let num = 5;
+        let A = "A";
+        let B = "B";
+        let C = "C";
+        var count = 0;   // 최소 이동횟수
+
+        // start에서 sub를 거쳐 end까지 가는데 n개의 원반을 이동하는 이동과정 출력하는 함수
+        const hanoi = (n, start, sub, end) => {
+            if(n == 1) {
+                console.log(start + "에서" + end + " 로 옮긴다.");
+                count++;
+                return
+            }
+            //1단계: n-1개를 sub에 옮김
+            hanoi(n-1, start, end, sub);
+            
+            //2단계: 제일 큰 1개를 end에 옮김
+            hanoi(1, start, sub, end);
+
+            //3단계: n-1개를 end로 옮김
+            hanoi(n-1, sub, start, end);
+        }
+
+        hanoi(num, A, B, C);
+        console.log("최소 이동횟수는 " + count + "번 입니다.");
+    </script>
+    <body>
+        
+    </body>
+</html>

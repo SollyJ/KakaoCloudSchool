@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JS Example</title>
+        <script>
+            //document.write("브라우저 화면에 출력\n <p>태그 사용 <b>가능</b></p>");
+            //alert("대화상자로 출력");
+
+
+            /* 변수 연습
+            var x = 100;
+            y = 200;   // 키워드가 없으면 global, 하지만 웬만하면 키워드를 붙이는것이 좋다.
+            let z = 300;
+            const con = 400; 
+            //con = 500;   // Error! 불가능
+
+            console.log(x);
+            x = 1000;   // var형 변수는 수정 가능
+            z = 3000;   // let형 변수는 수정 불가능, global한 z로 범위가 넓어진것임
+            console.log(x);
+
+            function ex() {
+                var x = 1001;   // 함수의 member변수로 위의 x와 다르다.
+                y = 2000;
+                console.log("x:" + x + "y:" + y + "z:" + z);
+            }
+            ex();
+            console.log(x);
+            console.log(y);   // global이기때문 함수안에서 변경된 값이 출력됨 */
+
+
+            /* shift 연습
+            console.log(14 << 2);   // 한번 shift할때마다 2배
+            console.log(14 >> 2);   //       "         1/2배 but, 정수
+            console.log(-14 >> 2);
+            console.log(-14 >>> 2);   // 음양 바뀜 */
+            
+
+            /* && || ?? 연습
+            var x = 10;
+            var result = x > 10 && x++;   // &&연산은 앞에가 false면 뒤를 보지않음
+            console.log(x);   
+            result = true && 10;   // js는 boolean이 아니어도 논리 연산 가능
+            console.log(result); 
+
+            var arr1 = [1, 2];
+            var arr2 = [3, 4];
+            console.log(arr1 || arr2);   // ||연산은 앞에가 true면 뒤를 보지않음
+
+            var data1 = 0;
+            var data2 = "JavaScript";
+            console.log(data1 || data2);
+            // ??는 null exeption을 적용할때 쓰인다.
+            console.log(data1 ?? data2);   // 값이 있냐 없냐(null)를 판단 */
+
+
+            /*
+            const solly = {   // Object 생성 property: value
+                number: "4679"
+            };
+
+            function getNumber(who) {
+                return (who?.number) || "이름을 입력해주세요"   // null exception 처리 한 뒤 undefined도 처리
+            }
+
+            console.log(getNumber(solly));
+            console.log(getNumber()); */
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

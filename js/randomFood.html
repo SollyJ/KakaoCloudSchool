@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Random Food</title>
+    </head>
+    <body>
+        <button id="mybutton">점심 뭐먹지?</button>
+
+        <script>
+            document.getElementById("mybutton").onclick = function() {
+                // Math.random() 0.0~1.0중 랜덤
+                let rand_num = Math.floor(Math.random() * 5);   // 0~4중에 랜덤숫자
+                let menus = ["짜장면", "순대국", "라면", "김치찌개", "샐러드"];
+                alert(menus[rand_num]);
+
+                /*switch(rand_num) {
+                    case 1:
+                        alert("짜장면");                    
+                        break;
+                    case 2:
+                        alert("순대국");                     
+                        break;
+                    case 3:
+                        alert("라면");            
+                        break;
+                    default:
+                        alert("김치찌개");
+                }*/
+            };
+        </script>
+    </body>
+</html>

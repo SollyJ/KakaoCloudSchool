@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>get Age and Zodiac</title>
+
+        <script>
+            document.write("<h2>나이 계산</h2>");
+            let today = new Date();
+            let currentYear = today.getFullYear();
+            let birthdayYear = prompt("태어난 연도를 입력하세요.");
+            let zodiacs = ["쥐","소","호랑이","토끼","용","뱀","말","양","원숭이","닭","개","돼지"];
+
+            function getAge(birthdayYear) {
+                let age = currentYear - birthdayYear + 1;
+                return age;
+            }
+
+            function getZodiac(birthdayYear) {
+                let diff = currentYear - birthdayYear;
+
+                switch (diff % 12) {
+                    case 11:
+                        return zodiacs[3];
+                        break;
+                    case 10:
+                        return zodiacs[4];
+                        break;
+                    case 9:
+                        return zodiacs[5];
+                        break;
+                    case 8:
+                        return zodiacs[6];
+                        break;
+                    case 7:
+                        return zodiacs[7];
+                        break;
+                    case 6:
+                        return zodiacs[8];
+                        break;
+                    case 5:
+                        return zodiacs[9];
+                        break;
+                    case 4:
+                        return zodiacs[10];
+                        break;
+                    case 3:
+                        return zodiacs[11];
+                        break;
+                    case 2:
+                        return zodiacs[0];
+                        break;
+                    case 1:
+                        return zodiacs[1];
+                        break;
+                    default:
+                        return zodiacs[2];
+                }
+            }
+            
+            document.write("태어난 연도: " + birthdayYear);
+            document.write("귀하의 나이는 " + getAge(birthdayYear) + "세 입니다.<br>");
+            document.write(getZodiac(birthdayYear) + "띠 입니다.");
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

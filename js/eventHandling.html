@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Handling Ex</title>
+    </head>
+    <body>
+        <h1 id="header">
+            헤더(부모)
+            <p id="paragraph">문단(자식)</p>
+        </h1>
+
+        <button id="btn" width="50px" height="50px">버튼</button>
+    </body>
+
+    <script>
+        let btn = document.getElementById("btn");
+
+        btn.addEventListener("click", () => {   // 클릭 이벤트가 생기면 함수를 실행하라
+            alert("이벤트리스너 사용해보기")
+        })
+
+        /*이벤트 객체의 속성과 값을 출력 */
+        document.body.addEventListener("click", (e) => {
+            var event = e || window.event;
+            
+            document.body.innerHTML = "";
+            
+            for(var key in event) {
+                document.body.innerHTML += "<p>" + key + ':' + event[key] + "</p>";
+            }
+        });
+
+        /* event bubbling */
+        document.getElementById("header").addEventListener("click", () => {
+            alert("header");
+        });
+        document.getElementById("paragraph").addEventListener("click", (e) => {
+            alert("paragraph");
+            //e.stopPropagation();
+        }); 
+
+    </script>
+</html>

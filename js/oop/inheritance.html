@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inheritance</title>
+        <script>
+            class Sports {
+                constructor() {
+                    this.area = "Sports";
+                }
+
+                print() {
+                    console.log(this.area);
+                }
+            }
+
+            class Soccer extends Sports {
+                constructor() {
+                    super();
+                    this.name = "Soccer";
+                }
+
+                print() {   // overriding
+                    super.print();
+                    console.log(this.name);
+                }
+            }
+
+            let soccer = new Soccer();
+            soccer.print();
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

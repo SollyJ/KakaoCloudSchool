@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Object Examples</title>
+        <script>
+            /* Object 객체 */
+            let obj = {name : "solly",
+                       age : 25,
+                       number : "4670",
+                       jender : "woman"};
+
+            for(attr in obj) {  // 객체의 모든 속성들을 "문자열" 형태로 "차례대로" 출력
+                console.log(obj[attr]);
+            }
+
+            // for(val of obj) {   // error: 객체는 not iterable이기때문에 순회가 안된다. for-of는 배열에서만 쓸수있음
+            //     console.log(val);
+            // }
+
+            console.log("name" in obj);   // 속성의 존재 여부
+
+            obj.course = "개발자과정";   // 속성 추가
+            obj.number = "4679";    // 속성 값 변경
+            delete(obj.jender);   // 속성 삭제
+            console.log(obj); 
+
+            /* Constructor 생성자
+            function member(name="이름없음", phoneNumber="번호없음") {
+                this.name = name;   // this를 이용해서 필드와 메소드를 정의
+                this.phoneNumber = phoneNumber;
+            }
+
+            let obj1_member = new member("정솔리", "01000000000");   // 생성자로 obj_member이라는 객체 생성
+            let obj2_member = new member("홍길동", "01011111111"); */
+
+            /* 클래스 
+            class Artist {
+                constructor(name="", job="") {
+                    this.name = name;
+                    this.job = job;
+                }
+
+                static statMethod() {
+                    //printName();  static메서드에서 인스턴스메서드 호출 불가능
+                    console.log("static method 연습");
+                }
+
+                // 클래스의 메소드는 function키워드를 안적는다.
+                printName() {
+                    console.log(this.name);
+                    Artist.statMethod();   // 인스턴스메서드에서 static메서드 호출가능 방법1
+                    this.constructor.statMethod();  //              "                방법2
+                }
+
+                // getter: 속성처럼 사용가능
+                get getJob() {
+                    return this.job
+                }
+            }
+
+            let iu = new Artist("IU", "Singer");
+            let suzy = new Artist();    
+            iu.printName();
+            console.log(suzy.getJob);
+            Artist.statMethod(); */
+
+            /*
+            // Javascript에서는 변수, 함수, class가 모두 동일한 레벨 따라서, 동일한 이름을 쓰면 덮어써짐
+            function f() {
+                console.log("매개변수가 없는 함수");
+            }
+
+            function f(n) {
+                console.log("매개변수가 있는 함수");
+            }
+
+            f(10);
+            f();    // 오버로딩이 되지 않는다. 이미 f(n)이 대입되어있음 => const를 써야되는 이유! */
+            
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Asynchronous</title>
+
+        <script>
+            /* 스크립트에서 body에 작성한 것들을 사용하는경우
+               body 아래에 작성하거나
+               위에 작성할때는 load 이벤트 발생 후에 동작하는 코드를 작성해야 한다. */
+      
+            window.addEventListener("load", (e) => {
+                /* 동기식 처리 
+                document.getElementById("mybtn").addEventListener("click", (e) => {
+                    // 반복문을 10억번 돌렸을때 걸리는 시간 측정
+                    const start_time = Date.now();
+                    for(var i=0; i<1000000000; i++) {}
+                    const end_time = Date.now();
+                    console.log(end_time - start_time + "milli sec");
+
+                    console.log("다음 작업");
+                });*/
+
+                /* 비동기식 처리 */
+                document.getElementById("mybtn").addEventListener("click", (e) => {
+                    setTimeout(() => {
+                    const start_time = Date.now();
+                    for(var i=0; i<1000000000; i++) {}
+                    const end_time = Date.now();
+                    console.log(end_time - start_time + "milli sec");
+                    }, 0);   
+
+                    console.log("다음 작업");   // 기다리는 시간 없이 바로 수행 -> 비동기식
+                });
+            });     
+        </script>
+    </head>
+
+    <body>
+        <button id="mybtn">클릭</button>
+    </body>
+</html>

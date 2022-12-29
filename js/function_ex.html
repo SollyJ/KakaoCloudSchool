@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>함수 예제</title>
+
+        <script>
+            func1();
+            function func1() {
+                console.log("func1 호출");
+            }
+
+            // func2();   // let을 이용해서 만들면 hoisting이 안되어 error
+            // let func2  = function() {
+            //     console.log("func2 호출");
+            // }
+
+            /* 화살표 함수: 함수를 다른 함수에 대입할 때
+            let func3 = (n, char) => {
+                console.log("func3 호출: 화살표 함수\n");
+                var result = "";
+                for(var i=0; i<n; i++) {
+                    result += char;
+                }
+                console.log(result);
+            }
+            func3(10,'*'); */
+
+            /*
+            function sum(int1, int2) {
+                return int1 + int2;
+            }
+
+            var result;
+            // 이 경우는 메모리를 더 많이 차지한다.
+            // 함수가 호출될때마다 스택(2GB)이 생기는데 이는 함수 안에 함수가 호출 되었기 때문에 2*2GB나 차지한다.
+            result = sum(sum(100,200),300);
+            console.log(result);
+
+            var temp = sum(100,200);   // 함수가 return되면 스택은 없어진다.
+            result = sum(temp,300);   // 따라서 2GB만 차지한다.
+            console.log(result);
+            */
+
+            /* Closure 
+            function outer() {
+                var x = 0;
+                return () => {
+                    x++;
+                    console.log(x);
+                } 
+            }
+            var result = outer();   // 함수를 호출해서 함수를 리턴받음
+            result();   // 외부에서 함수내의 변수인 x를 수정
+            result();   // 작업한 내역을 함수에 저장하면서 작업을 계속하는 것이 가능 */
+            
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
