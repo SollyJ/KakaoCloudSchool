@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "content": "react",
+      "done": true
+    },
+    {
+      "id": 2,
+      "content": "java",
+      "done": false
+    },
+    {
+      "id": 3,
+      "content": "spring-boot",
+      "done": false
+    }
+  ]
+}

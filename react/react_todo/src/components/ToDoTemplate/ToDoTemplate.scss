@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "PyeongChangPeace-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ToDoTemplate {
+  width: 512px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6rem;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .app-title {
+    font-family: "PyeongChangPeace-Bold";
+    background: #364fc7;
+    color: white;
+    height: 4rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    background: white;
+  }
+}

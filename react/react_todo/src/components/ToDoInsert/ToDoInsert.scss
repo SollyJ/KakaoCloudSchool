@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "PyeongChang-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChang-Bold.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ToDoInsert {
+  display: flex;
+  background: #bac8ff;
+  input {
+    font-family: "PyeongChang-Bold";
+    background: none;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: white;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.702);
+    }
+    flex: 1;
+    /* 상위 태그에 flex가 있으면 전체 합에 대한 비율로 배치가 가능 */
+  }
+
+  button {
+    outline: none;
+    border: none;
+    background: #91a7ff;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s color ease-in;
+    &:hover {
+      color: #dbe4ff;
+    }
+  }
+}

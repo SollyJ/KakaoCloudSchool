@@ -1,0 +1,19 @@
+/* 파일 안에서만 사용하는 클래스 */
+.wrapper {
+  background: #00ffff;
+  padding: 1em;
+  color: white;
+  font-size: 2rem;
+}
+
+.inverted {
+  color: black;
+  background: white;
+  border: 3px dotted black;
+}
+
+/* 모든 곳에서 사용할 수 있는 클래스 - css module이 이름을 수정하지 않음 */
+:global .something {
+  font-weight: 800;
+  color: blueviolet;
+}
