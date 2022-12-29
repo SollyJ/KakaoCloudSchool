@@ -1,0 +1,41 @@
+{
+    "keepSettings": {
+        "type": 2,
+        "amount": 10
+    },
+    "auditFilename": "audit.json",
+    "hashType": "md5",
+    "extension": "",
+    "files": [
+        {
+            "date": 1669257070627,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1124/log/access-yyyy31dd.log",
+            "hash": "f2bb70fe769be52f52ba4aff871f3ea2"
+        },
+        {
+            "date": 1669257124034,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1124/log/access-yyyy32dd.log",
+            "hash": "b45f92065900be0a455a5cd63cda67a2"
+        },
+        {
+            "date": 1669257156795,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1124/log/access-20221124.log",
+            "hash": "812e7261927f7d0d72e3c52f04add0f8"
+        },
+        {
+            "date": 1669336109149,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1124/log/access-20221125.log",
+            "hash": "4bf084cdb6c2de645203a11b722cd2c6"
+        },
+        {
+            "date": 1669553550767,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1124/log/access-20221127.log",
+            "hash": "2594385a8f4156a3e1a65f0533eba185"
+        },
+        {
+            "date": 1669594574726,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1124/log/access-20221128.log",
+            "hash": "d19fbff4d943784bc6bce24bafc061c7"
+        }
+    ]
+}

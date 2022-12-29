@@ -1,0 +1,11 @@
+{
+  "name": "nodebasic",
+  "version": "1.0.0",
+  "description": "nodebasic",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "sollyj",
+  "license": "ISC"
+}

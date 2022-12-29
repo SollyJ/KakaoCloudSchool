@@ -1,0 +1,26 @@
+{
+    "keepSettings": {
+        "type": 2,
+        "amount": 10
+    },
+    "auditFilename": "audit.json",
+    "hashType": "md5",
+    "extension": "",
+    "files": [
+        {
+            "date": 1669873945235,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1201/log/access-20221201.log",
+            "hash": "f037479d9e9676393fc8c37d3eba27c7"
+        },
+        {
+            "date": 1669941734477,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/node_1201/log/access-20221202.log",
+            "hash": "baf7c8d7e8bfb0f512bc40bb8d2265e8"
+        },
+        {
+            "date": 1669951990946,
+            "name": "/Users/sollyj/Desktop/KakaoCloudSchool/node/apiserver/log/access-20221202.log",
+            "hash": "ace7d7b8f829a0165fca7bcad2b102cf"
+        }
+    ]
+}
