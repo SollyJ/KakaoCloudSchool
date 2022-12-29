@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Canvas</title>
+        <script>
+            window.addEventListener("load", () => {
+                let canvas = document.getElementById("canvas");
+                let context = canvas.getContext("2d");  // 캔버스에 그릴 수 있는 context객체를 불러오기
+
+                context.fillStyle = '#0000ff';
+                context.fillRect(0, 0, 100, 100);
+                context.fillText("Blue", 0, 110);
+            });
+        </script>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+    </body>
+</html>

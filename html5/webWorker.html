@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Worker</title>
+    </head>
+    <body>
+        <h1>Web Worker</h1>
+        숫자 입력: <input id="num" type="number"/>
+        <button id="calculation">합계 구하기</button>
+    </body>
+
+    <script>
+        let num = document.getElementById("num");
+        let calculation = document.getElementById("calculation");
+
+        /* 숫자가 커지면 오래걸린다 => 얼어버린다 
+        calculation.addEventListener("click", () => {
+            let result = 0;
+            for(var i = 0; i < Number(num.value); i++) {
+                result += i;
+            }
+            console.log(result);
+        }); */
+
+        /* worker 사용 */
+        let worker;
+        calculation.addEventListener("click", () => {
+            worker = new Worker(worker.js);
+            worker.postMessage(Number(num.value));  // 워커에게 메세지 전송
+            worker.onmessage = (e) => {    // 워커가 결과를 전송했을때
+                console.log(e.data);    // 데이터 출력
+            };
+        });
+    </script>
+</html>

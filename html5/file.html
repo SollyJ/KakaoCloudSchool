@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>이미지 파일 불러오기</title>
+    </head>
+    <body>
+        <input type="file" id="file" accept="image/*"/>
+        <img id="display" width="250" height="250" />
+    </body>
+    <script>
+        let display = document.getElementById("display");
+        let fileinput = document.getElementById("file");
+
+        fileinput.addEventListener("change", (e) => { // 선택이 변경되면
+            let reader = new FileReader();
+            // 파일이 선택되었는지 확인
+            if(!(fileinput.files && fileinput.files[0])) {
+                alert("선택된 파일이 없음");
+                return;
+            }
+            
+            reader.readAsDataURL(fileinput.files[0]); // 파일을 선택했는지 안했는지
+            reader.addEventListener("load", () => {  // 파일의 내용을 전부 읽으면
+                display.src = reader.result;
+            });
+        });
+    </script>
+</html>

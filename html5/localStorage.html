@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Local Storage</title>
+    </head>
+    <body>
+        <legend>개인 정보</legend>
+        <label>아이디: </label>
+        <input id="id" type="text"/>
+        <input id="idsave" type="checkbox" value="check">아이디 저장</input>
+        </br>
+        <label>비밀번호: </label>
+        <input id="password" type="password"/>
+        </br>
+        <input id="signin" type="submit" value="로그인"/>
+    </body>
+
+    <script>
+        let id = document.getElementById("id");
+        let password = document.getElementById("password");
+        let idsave = document.getElementById("idsave");
+        let signin = document.getElementById("signin");
+
+        window.addEventListener("load", () => { // 윈도우가 로드되면 저장된 아이디가 있으면 입력하기
+            if(typeof(localStorage.id) != 'undefined') {
+                id.value = localStorage.id;
+                idsave.checked = true;
+            }
+        });
+
+        signin.addEventListener("click", () => {
+            if(idsave.checked) {
+                localStorage.id = id.value;
+            } else {
+                delete localStorage.id;
+            }
+        });
+    </script>
+</html>

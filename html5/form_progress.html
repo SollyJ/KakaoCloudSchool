@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>form의 progress 사용해보기</title>
+    </head>
+
+    <body>
+        <form>
+            <progress id="progress_bar" value="0" max="100"> </progress>
+            <input type="button" value="시작" onclick="progress()">
+        </form>
+    </body>
+
+    <script>
+        function progress() {
+            let progress_bar = document.getElementById("progress_bar");
+            let button = document.getElementById("button");
+
+            // 버튼을 누르면 1초마다 progress_bar 10씩 채워지기
+            let timer = setInterval(() => {
+                progress_bar.value += 10;
+                if(progress_bar.value === 100)
+                    clearInterval(timer);   // 안해주면 memory leak이 일어남, 타이머는 용도가 끝나면 clear해줘야함
+            }, 1000);
+        }
+    </script>
+</html>

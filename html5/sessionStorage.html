@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Session Storage</title>
+    </head>
+    <body>
+        <input id="keyinput" type="text" />
+        <input id="valueinput" type="text" />
+        <input id="inssert_btn" type="button" value="삽입"/>
+        <input id="delete_btn" type="button" value="삭제"/>
+        <input id="addwindow_btn" type="button" value="윈도우추가"/>
+
+        <fieldset>
+            <legend>데이터 출력 영역</legend>
+            <select id="list" size="10"></select>
+        </fieldset>
+    </body>
+
+    <script>
+        let key = document.getElementById("keyinput");
+        let value = document.getElementById("valueinput");
+        let inssert_btn = document.getElementById("inssert_btn");
+        let delete_btn = document.getElementById("delete_btn");
+        let addwindow_btn = document.getElementById("addwindow_btn");
+        let data_list = document.getElementById("list");
+
+        // 데이터 읽는 함수
+        function showData() {
+            data_list.innerHTML = "";
+            for(var i=0; i<sessionStorage.length; i++) {
+                let temp = sessionStorage.key(i);   // i번째 key값
+
+                //select에 옵션을 추가
+                data_list.options[data_list.options.length] = new Option(temp + ":" + sessionStorage[temp], temp);
+            }
+            key.value = null;
+            value.value = null;
+        }
+        
+        window.addEventListener("load", showData());
+
+        inssert_btn.addEventListener("click", () => {
+            sessionStorage[key.value] = value.value;
+            showData();
+            key.value = null;
+            value.value = null;
+        });
+        
+        delete_btn.addEventListener("click", () => {
+            delete sessionStorage[key.value];
+            showData();
+            key.value = null;
+            value.value = null;
+        });
+
+        // 리스트에 있는 데이터를 누르면 input에 띄우기
+        data_list.addEventListener("click", () => {
+            var selectedData = data_list.options[data_list.selectedIndex];
+            key.value = selectedData.value;
+            value.value = sessionStorage[selectedData.value];
+        });
+    </script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Geo Location</title>
+        <script>
+            navigator.geolocation.getCurrentPosition((position) => {
+                alert(position.coords.latitude + ":" + position.coords.longitude);  // 위도와 경도
+            }, (err) => {
+                alert(error.code);
+            },{
+                maximumAge:5000,
+                enableHighAccuracy:true
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

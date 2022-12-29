@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>mymap</title>
+        <!-- kakao api 불러오기 -->
+    </head>
+    <body>
+        <div id="map" style="width:500px;height:400px;"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=436fa251b041e6265969f45787533e45"></script>
+        <script>
+            navigator.geolocation.getCurrentPosition((position) => {
+                var container = document.getElementById('map');
+                var options = {
+                    center: new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                    level: 3
+                };
+
+                var map = new kakao.maps.Map(container, options);
+            }, (err) => {
+
+            });
+        </script>
+    </body>
+</html>
