@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:c="http://www.springframework.org/schema/c"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!--<bean id="memberRepository" class="di.persistence.MemberRepositoryImpl">
+	</bean>
+
+	<bean id="memberService" class="di.service.MemberServiceImpl">
+		<property name="memberRepository">
+			<ref-bean="memberRepository"></ref-bean>
+		</property>
+	</bean>
+	
+	<bean id="memberController" class="di.controller.MemberController">
+		<property name="memberService">
+			<ref-bean="memberService"></ref-bean>
+		</property>
+	</bean>-->
+	
+	<!-- 어노테이션을 이용한 설정을 사용가능 -->
+	<context:annotation-config />
+	<context:component-scan base-package="di"></context:component-scan>
+	
+	<!-- Maria DB DataSource -->
+	<bean id="mariaDBDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</value>
+		</property>
+		<property name="url">
+			<value>jdbc:log4jdbc:mariadb://localhost:3306/mydb</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>center</value>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.jdbc.core.simple.SimpleJdbcInsert" id="simpleJdbcInsert">
+		<constructor-arg ref="mariaDBDataSource" />
+	</bean>
+	
+	<!--xml를 사용하는 MyBatis -->
+<!--	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mariaDBDataSource" />
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:/mybatis/mappers/good.xml"></property>
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>-->
+	
+	<!-- 인터페이스를 사용하는 MyBatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mariaDBDataSource" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="di.persistence" />
+	</bean>
+	
+	<!-- MyBatis에서 트랜잭션을 사용하기 위한 매니저 클래스의 bean -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mariaDBDataSource" />
+	</bean>
+	<tx:annotation-driven />tj
+</beans>
