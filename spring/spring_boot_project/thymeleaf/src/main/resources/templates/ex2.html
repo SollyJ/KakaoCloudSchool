@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List</title>
+</head>
+<body>
+<ul>
+  <li th:each="vo : ${list}">
+    <span th:if="${vo.sno % 5 == 0}" th:text="${vo.sno}"></span>
+    <span th:unless="${vo.sno % 5 == 0}">[[${vo.first}]]</span>
+  </li>
+</ul>
+</body>
+</html>
