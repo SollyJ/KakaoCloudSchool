@@ -162,4 +162,6 @@ dist
 
 .DS_Store
 
+application.yml
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node
