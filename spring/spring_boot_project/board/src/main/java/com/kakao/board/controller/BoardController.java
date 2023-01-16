@@ -1,7 +1,7 @@
 package com.kakao.board.controller;
 
-import com.kakao.board.board.BoardDTO;
-import com.kakao.board.board.PageRequestDTO;
+import com.kakao.board.dto.BoardDTO;
+import com.kakao.board.dto.PageRequestDTO;
 import com.kakao.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -72,7 +72,22 @@ public class BoardController {
                 "page", requestDTO.getPage());
         log.info("수정 후 bno:" + dto.getBno());
         return "redirect:/board/read?bno="+dto.getBno()
-                +"&page=" + requestDTO.getPage();
+                +"&page=" + requestDTO.getPage()
+                +"&type=" + requestDTO.getType()
+                +"&keyword=" + requestDTO.getKeyword();
+    }
+
+    @PostMapping("/board/remove")
+    public String remove(BoardDTO dto,
+                         RedirectAttributes redirectAttributes){
+        log.info("dto:" + dto.toString());
+
+        //삭제
+        boardService.removeWithReplies(dto.getBno());
+        redirectAttributes.addFlashAttribute("msg",
+                dto.getBno() + " 삭제");
+        return "redirect:/board/list";
+
     }
 
 }
