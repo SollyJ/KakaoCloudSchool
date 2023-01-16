@@ -55,4 +55,21 @@ public class ServiceTest {
                 .build();
         System.out.println(boardService.modify(dto));
     }
+
+    @Test
+	public void testGetList() {
+		// 게시글 번호를 이용해서 댓글 가져오기
+		List<ReplyDTO> list = replyService.getList(49967L);
+		list.forEach(dto -> System.out.println(dto));
+	}
+
+	@Test
+	public void insertReply() {
+		ReplyDTO dto = ReplyDTO.builder()
+			.text("댓글 삽입 테스트")
+			.replyer("user1.kakao.@com")
+			.bno(27L)
+			.build();
+		System.out.println(replyService.register(dto));
+	}
 }

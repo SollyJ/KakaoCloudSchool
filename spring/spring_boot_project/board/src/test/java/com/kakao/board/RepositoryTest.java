@@ -129,6 +129,39 @@ public class RepositoryTest {
             Long c = (Long) ar[2];
             System.out.println(c);
         });
+    }
+
+    @Test
+    public void testSearch1(){
+        boardRepository.search1();
+    }
+
+    //검색 테스트
+    @Test
+    public void testSearch(){
+        Pageable pageable = PageRequest.of(0, 10,
+                Sort.by("bno").descending()
+                .and(Sort.by("title").ascending()));
+
+        //title 또는 content 에 안녕이 포함된 데이터 조회
+        Page<Object[]> result =
+                boardRepository.searchPage("tc", "안녕",
+                        pageable);
+        for(Object [] row : result.getContent()){
+            System.out.println(Arrays.toString(row));
+        }
+
+    }
+
+    //댓글을 가져오는 메서드 확인
+    @Test
+    public void testListReply(){
+        List<Reply> replyList =
+                replyRepository.findByBoardOrderByRno(
+                        Board.builder().bno(27L).build()
+                );
+        replyList.forEach(
+                reply -> System.out.println(reply));
 
     }
 }
