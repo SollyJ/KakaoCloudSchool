@@ -11,6 +11,10 @@
       서버에게 전달은 됩니다. -->
       <input type="hidden" name="page" id="page"
              th:value="${requestDTO.page}" />
+      <input type="hidden" name="type" id="type"
+             th:value="${requestDTO.type}" />
+      <input type="hidden" name="keyword" id="keyword"
+             th:value="${requestDTO.keyword}" />
 
     <div class="form-group">
       <lable>글번호</lable>
@@ -50,7 +54,8 @@
     </div>
 
     </form>
-    <a th:href="@{/board/list(page=${requestDTO.page})}">
+    <a th:href="@{/board/list(page=${requestDTO.page}
+    , type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
         <button type="button" class="btn btn-info">목록</button>
     </a>
 
@@ -76,6 +81,16 @@
           actionForm.method="post";
           actionForm.submit();
       })
+
+      document.getElementById("removeBtn").addEventListener(
+              'click', (e) => {
+          if(!confirm("삭제하시겠습니까?")){
+              return;
+          }
+          actionForm.action="/board/remove";
+          actionForm.method="post";
+          actionForm.submit();
+      });
     </script>
   </th:block>
 </th:block>

@@ -1,58 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
-  <th:block th:fragment="content">
-    <h1 class="mt-4">
-      게시물 상세보기
-    </h1>
+    <th:block th:fragment="content">
+        <h1 class="mt-4">
+            게시물 상세보기
+        </h1>
 
-    <div class="form-group">
-      <lable>글번호</lable>
-      <input type="text" class="form-control" name="bno"
-             th:value="${dto.bno}" readonly="readonly"/>
-    </div>
+        <div class="form-group">
+            <lable>글번호</lable>
+            <input type="text" class="form-control" name="bno"
+                   th:value="${dto.bno}" readonly="readonly"/>
+        </div>
 
-    <div class="form-group">
-      <lable>제목</lable>
-      <input type="text" class="form-control" name="title"
-             th:value="${dto.title}" readonly="readonly"/>
-    </div>
+        <div class="form-group">
+            <lable>제목</lable>
+            <input type="text" class="form-control" name="title"
+                   th:value="${dto.title}" readonly="readonly"/>
+        </div>
 
-    <div class="form-group">
-      <lable>내용</lable>
-      <textarea class="form-control" row="5" name="content"
-                readonly="readonly">[[${dto.content}]]</textarea>
-    </div>
+        <div class="form-group">
+            <lable>내용</lable>
+            <textarea class="form-control" row="5" name="content"
+                      readonly="readonly">[[${dto.content}]]</textarea>
+        </div>
 
-    <div class="form-group">
-      <lable>작성자</lable>
-      <input type="text" class="form-control" name="name"
-             th:value="${dto.writerName}" readonly="readonly"/>
-    </div>
+        <div class="form-group">
+            <lable>작성자</lable>
+            <input type="text" class="form-control" name="name"
+                   th:value="${dto.writerName}" readonly="readonly"/>
+        </div>
 
-    <div class="form-group">
-      <lable>작성일</lable>
-      <input type="text" class="form-control" name="regDate"
-             th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd')}"
-             readonly="readonly"/>
-    </div>
+        <div class="form-group">
+            <lable>작성일</lable>
+            <input type="text" class="form-control" name="regDate"
+                   th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd')}"
+                   readonly="readonly"/>
+        </div>
 
-    <div class="form-group">
-      <lable>수정일</lable>
-      <input type="text" class="form-control" name="modDate"
-             th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd')}"
-             readonly="readonly"/>
-    </div>
+        <div class="form-group">
+            <lable>수정일</lable>
+            <input type="text" class="form-control" name="modDate"
+                   th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd')}"
+                   readonly="readonly"/>
+        </div>
 
-    <a th:href="@{/board/list(page=${requestDTO.page})}">
-        <button type="button" class="btn btn-info">목록</button>
-    </a>
+        <div>
+            <div class="mt-4">
+                <h5><span class="badge addReply">댓글 작성</span></h5>
+                <h5><span class="badge badge-secondary replyCount" id="replyCount"> 댓글 [[${dto.replyCount}]]</span>
+                </h5>
+            </div>
+            <div class="list-group" id="replyList">
+            </div>
+        </div>
 
-    <a th:href="@{/board/modify(
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="replyText" placeholder="댓글 작성...">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="replyer" placeholder="작성자...">
+                            <input type="hidden" name="rno">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger replyRemove">삭제</button>
+                        <button type="button" class="btn btn-warning replyModify">수정</button>
+                        <button type="button" class="btn btn-primary replySave">추가</button>
+                        <button type="button" class="btn btn-outline-secondary replyClose" data-dismiss="modal">닫기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            window.addEventListener("load", (e) => {
+                let bno = [[${dto.bno}]]; // 글번호 찾아오기
+                let listGroup = document.getElementById("replyList"); // 댓글이 추가될 영역
+
+                // 날짜 출력 함수
+                let formatTime = (str) => {
+                    let date = new Date(str);
+
+                    return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+                }
+
+                // 글번호에 해당하는 데이터를 가져와서 replyList에 출력하는 함수
+                let loadJSONData = () => {
+                    fetch('/replies/board/' + bno)  // bno가
+                        .then((response) => response.json())    // response로 들어오고, json이
+                        .then((arr) => {    // arr로 들어와서
+                            //console.log(arr);   // console에 출력
+
+                            // 출력할 내용
+                            let str = "";
+                            for (const reply of arr) {
+                                str += '<div class="card-body" data-rno="' + reply.rno + '"><b>' + reply.rno + '</b>';
+                                str += '<h5 class="card-title">' + reply.text + '</h5>';
+                                str += '<h6 class="card-subtitle">' + reply.replyer + '</h6>';
+                                str += '<p class="card-text">' + formatTime(reply.regDate) + '</p>';
+                                str += '</div>';
+                            }
+
+                            listGroup.innerHTML = str;
+                        })
+                }
+
+                // 댓글 개수 출력 영역을 클릭하면
+                document.getElementById("replyCount").addEventListener("click", (e) => {
+                    loadJSONData();
+                });
+
+                //모달창
+                let modal = $('.modal');
+                //닫기 버튼을 눌렀을 때 처리
+                $(".replyClose").on("click", function () {
+                    modal.modal('hide');
+                });
+
+                $(".addReply").click(function () {
+                    modal.modal('show');
+                    //댓글 입력하는 부분 초기화 시키기
+                    $('input[name="replyText"]').val('');
+                    $('input[name="replyer”]').val('');
+                    $(".modal-footer .btn").hide(); //모달 내의 모든 버튼을 안 보이도록
+                    $(".replySave, .replyClose").show(); //필요한 버튼들만 보이도록
+                });
+
+                $(".replySave").click(function () {
+                    let reply = {
+                        bno: bno,
+                        text: $('input[name="replyText"]').val(),
+                        replyer: $('input[name="replyer"]').val()
+                    }
+                    console.log(reply);
+                    $.ajax({
+                        url: '/replies/',
+                        method: 'post',
+                        data: JSON.stringify(reply),
+                        contentType: 'application/json; charset=utf-8', dataType: 'json',
+                        success: function (data) {
+                            console.log(data);
+                            let newRno = parseInt(data);
+                            alert(newRno + "번 댓글이 등록되었습니다.");
+                            modal.modal('hide');
+                            loadJSONData();
+                        }
+                    })
+                });
+
+                // 댓글 클릭시 대화상자로 댓글 출력
+                $('#replyList').on('click', '.card-body', function () {
+                    // data-rno를 찾아오기
+                    let rno = $(this).data(rno);
+
+                    $("input[name='replyText']").val($(this).find('.card-title').html());
+                    $("input[name='replyer']").val($(this).find('.card-subtitle').html());
+                    $("input[name='rno']").val(rno);
+                    $('.modal-footer .btn').hide();
+                    $(".replyRemove, .replyModify, .replyClose").show();
+
+                    modal.modal('show');
+                })
+
+                //삭제 버튼을 눌렀을 때 처리
+                $(".replyRemove").on("click", function(){
+                    let rno = $("input[name='rno']").val(); //모달창에 보이는 댓글 번호로 hidden처리되어 있음
+                    $.ajax({
+                        url: '/replies/' + rno,
+                        method: 'delete',
+                        success: function(result){
+                            console.log("result: " + result);
+                            if(result ==='success'){
+                                alert("댓글이 삭제되었습니다.");
+                                modal.modal('hide');
+                                loadJSONData();
+                            }
+                        }
+                    })
+                });
+
+                // 수정 버튼을 눌렀을 때 처리
+                $(".replyModify").click(function() {
+                    let rno = $("input[name='rno']").val();
+                    let reply = {
+                        rno: rno,
+                        bno: bno,
+                        text: $('input[name="replyText"]').val(),
+                        replyer: $('input[name="replyer"]').val()
+                    }
+                    console.log(reply);
+                });
+                $.ajax({
+                    url: '/replies/' + rno,
+                    method: 'put',
+                    data: JSON.stringify(reply),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(result){
+                        console.log("RESULT: " + result);
+                        if(result ==='success'){
+                            alert("댓글이 수정되었습니다");
+                            modal.modal('hide');
+                            loadJSONData();
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <a th:href="@{/board/list(page=${requestDTO.page}
+    ,type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
+            <button type="button" class="btn btn-info">목록</button>
+        </a>
+
+        <a th:href="@{/board/modify(
     bno=${dto.bno},
-    page=${requestDTO.page})}">
-      <button type="button" class="btn btn-primary">수정</button>
-    </a>
+    page=${requestDTO.page}
+    ,type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
+            <button type="button" class="btn btn-primary">수정</button>
+        </a>
 
-  </th:block>
+    </th:block>
 </th:block>
