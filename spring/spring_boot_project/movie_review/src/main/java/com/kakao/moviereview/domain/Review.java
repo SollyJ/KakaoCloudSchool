@@ -1,35 +1,32 @@
-package com.kakao.moviereview.domain;
+package com.kakao.review.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = {"movie","member"})
-public class Review extends BaseEntity {
+@ToString(exclude = {"movie", "member"})
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long reviewnum;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long rno;
+    @ManyToOne(fetch= FetchType.LAZY)
+    private Movie movie;
+    @ManyToOne(fetch= FetchType.LAZY)
+    private Member member;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Movie movie;
+    private int grade;
+    private String text;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Member member;
+    public void changeGrade(int grade) {
+        this.grade = grade;
+    }
 
-	private int grade;
-	private String text;
+    public void changeText(String text) {
+        this.text = text;
+    }
 }
